@@ -1,3 +1,10 @@
+
+
+
+
+console.log(max(8, 3));  // 8
+console.log(max(2, 10)); // 10
+
 let tasks = 5
 
 if (tasks === 0){
