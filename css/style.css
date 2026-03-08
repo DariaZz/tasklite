@@ -1,72 +1,97 @@
-* { box-sizing: border-box;
+/*Дз 8*/
+.form-add {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
+.form-add__input {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 14px;
+  border: 1px solid rgba(30, 10, 60, 0.12);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.form-add__input::placeholder {
+  color: #9b96a6;
+}
+
+.form-add__button {
+  padding: 12px 45px;
+  border-radius: 8px;
+  border: 1px solid rgba(30, 10, 60, 0.12);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #7e66cd;
+}
+
+.form-add__button:hover {
+  cursor: pointer;
+}
+/* ===== БАЗА: контейнеры, типографика ===== */
+* { box-sizing: border-box; }
 html, body {
-margin: 0;
-font-family: "Inter", sans-serif;
-height: 100%;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  height: 100%;
 }
 .container {
-max-width: 1024px;
-margin: 0 auto;
-padding: 0 24px;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
-
-header {
-position: sticky;
-top: 0;
-z-index: 10;
-border-bottom: 1px solid rgba(0, 0, 0, .05); 
-background: rgba(255, 255, 255, .65);
+/* Шапка */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
+  background: rgba(255, 255, 255, .65);
 }
-
 .header__container {
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding-top: 14px;
-padding-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
-
 .header__title {
-font-size: 18px;
-font-weight: 700;
+  font-size: 18px;
+  font-weight: 700;
 }
-
 .tabs {
-display: flex;
-gap: 12px;
+  display: flex;
+  gap: 12px;
 }
-
 .tab {
-text-decoration: none;
-background-color: transparent;
-border: 1px solid transparent;
-border-radius: 8px;
-padding: 8px 24px;
-font-size: 14px;
-font-weight: 500;
-color: #374151;
-cursor: pointer;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
 }
-
-
-.todo.tab.active {
-background: #e3ddf4;
-border: 1px solid rgba(126, 102, 205, 0.55);
-color: #7e66cd;
+.todo .tab.active {
+ background: #e3ddf4;
+ border: 1px solid rgba(126, 102, 205, 0.55);
+ color: #7e66cd;
 }
-
 .todo {
-background:
-radial-gradient(1200px 900px at 20% 25%, #ebe6f5 0%, transparent 60%),
-radial-gradient(1200px 900px at 80% 35%, #f6eee4 0%, transparent 60%),
-radial-gradient(1200px 900px at 50% 85%, #e6eef6 0%, transparent 60%),
-linear-gradient(#f6f3f9, #fbfaf8);
-background-attachment: fixed;
+  background:
+    radial-gradient(1200px 900px at 20% 25%, #ebe6f5 0%, transparent 60%),
+    radial-gradient(1200px 900px at 80% 35%, #f6eee4 0%, transparent 60%),
+    radial-gradient(1200px 900px at 50% 85%, #e6eef6 0%, transparent 60%),
+    linear-gradient(#f6f3f9, #fbfaf8);
+  background-attachment: fixed;
 }
-
-
+/* урок 19*/
 .page-title {
     font-size: 22px;
     font-weight: 600;
@@ -97,13 +122,4 @@ background-attachment: fixed;
     background: #efeaff;
     border-color: #cfc6f5;
     color: #735cc6;
-}
-.toolbar__sort {
-  padding: 10px 28px 10px 10px;
-  font-size: 14px;
-  border: 1px solid rgba(30, 10, 60, 0.12);
-  border-radius: 8px;
-  background: #fff;
-  font-weight: 500;
-  color: #5e5472;
 }
