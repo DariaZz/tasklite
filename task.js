@@ -1,4 +1,4 @@
-/*
+// ===== Урок: операторы и условия =====
 let title = "";
 
 if (title === "") {
@@ -15,18 +15,18 @@ if (tasks === 0) {
 } else {
   console.log("Много задач");
 } 
-  */
+  
 
  /* ДЗ 9*/
 let a = 10;
 let b = 5;
 let sum = a+b;
 let difference = a-b;
-let multiplication = a*b;
+let multiplication = a * b;
 let division = a/b;
 
-let firstName = "Ivan";
-let lastName = "Ivanov";
+let firstName = "Иван";
+let lastName = "Иванов";
 let fullName = firstName +" "+ lastName
 
 console.log("Сумма: ", sum);
@@ -36,24 +36,16 @@ console.log("Деление: ", division);
 
 console.log("Полное имя: ", fullName);
 
+
+
 let title = " ";
 if (title === " "){
-    console.log("Название задаи не указано");
+    console.log("Название задачи не указано");
 }
 else {
     console.log("Задача:", title);
 }
 
-let title = "";
-
-if (title === "") {
-    console.log("Название задачи не указано");
-} else {
-    console.log("Задача:", title);
-}
-
-
-// 9. Количество задач
 
 let tasks = 2;
 
@@ -66,7 +58,8 @@ if (tasks === 0) {
 }
 
 
-// 10. Выполнена ли задача
+
+
 
 let isCompleted = false;
 
@@ -77,7 +70,8 @@ if (isCompleted) {
 }
 
 
-// 11. Срочные задачи
+
+
 
 let urgent = true;
 
@@ -90,7 +84,8 @@ if (tasks === 0) {
 }
 
 
-// 12. Проверка ролей
+
+
 
 let isAdmin = false;
 let isModerator = true;
@@ -102,12 +97,9 @@ if (isAdmin || isModerator) {
 }
 
 
-// ======================
-// Самостоятельная часть
-// ======================
 
+/* Самостоятельная часть*/
 
-// Задача "Скидка в магазине"
 
 let amount = 3200;
 
