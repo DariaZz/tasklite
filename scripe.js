@@ -68,4 +68,5 @@ const task2 = renderTask({
 const searchInput = document.querySelector('.toolbar__search');
 const footer = document.querySelector('.footer-controls');
 const sortSelect = document.querySelector('.toolbar__sort');
-
+const tabButtons = document.querySelectorAll(".tabs__item");
+const clearButton = document.querySelector(".footer-controls__clear");
