@@ -5,6 +5,7 @@ const container = document.querySelector('.tasks');
 const searchInput = document.querySelector('.toolbar__search');
 const footer = document.querySelector('.footer-controls');
 const sortSelect = document.querySelector('.toolbar__sort');
+const tabButtons = document.querySelectorAll('.tabs__item');
 
 const tasks = [];
 const form = document.querySelector('.form-add');
@@ -104,7 +105,7 @@ function renderTasks(task) {
     deleteBtn.addEventListener('click', () => {
       const index = tasks.indexOf(task);
       tasks.splice(index, 1);
-      renderAll(8);
+      renderAll();
     });
 
     // Отметка выполнения
@@ -119,12 +120,50 @@ function renderTasks(task) {
     return item;
 }
 
-function renderAll() {
-  document.querySelectorAll('.task').forEach(t => t.remove());
-  tasks.forEach(task => {
-    const card = renderTasks(task);
-    container.append(card);
+let sortOrder = 'new';
+sortSelect.addEventListener('change', () => {
+  const val = sortSelect.value;
+  if (val.includes('новые')) sortOrder = 'new';
+  else if (val.includes('старые')) sortOrder = 'old';
+  else if (val.includes('A→Z')) sortOrder = 'az';
+  else if (val.includes('Z→A')) sortOrder = 'za';
+  renderAll();
+});
+
+let currentFilter = 'all'; 
+tabButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    tabButtons.forEach(b => b.classList.remove('tabs__item--active'));
+    btn.classList.add('tabs__item--active');
+    if (btn.textContent.includes('Активные')) currentFilter = 'active';
+    else if (btn.textContent.includes('Заверш')) currentFilter = 'done';
+    else currentFilter = 'all';
+    renderAll();
   });
+});
+
+
+function renderAll() {
+  document.querySelectorAll('.task').forEach((t) => t.remove());
+  let filtered = tasks.filter((task) => {
+    if (currentFilter === 'active') return !task.done;
+    if (currentFilter === 'done') return task.done;
+    return true;
+  });
+  const query = searchInput.value.trim().toLowerCase();
+    if (query) {
+    filtered = filtered.filter(task =>
+    task.text.toLowerCase().includes(query)
+    );
+  }
+  searchInput.addEventListener('input', renderAll);
+  const sortedTasks = [...filtered].sort((a, b) => {
+    if (sortOrder === 'new') return b.id - a.id;
+    if (sortOrder === 'old') return a.id - b.id;
+    if (sortOrder === 'az') return a.text > b.text ? 1 : -1;
+    if (sortOrder === 'za') return a.text < b.text ? 1 : -1;
+  });
+  sortedTasks.forEach(task => footer.before(renderTasks(task)));
 }
 renderAll();
 
@@ -152,40 +191,3 @@ function formatDate(date) {
   const min = date.getMinutes().toString().padStart(2, '0');
   return `${d}.${m}.${y}, ${h}:${min}`;
 }
-
-
-/*
-
-const now = new Date();
-
-// День недели (0 — воскресенье, 6 — суббота)
-const days = [
-  "Воскресенье",
-  "Понедельник",
-  "Вторник",
-  "Среда",
-  "Четверг",
-  "Пятница",
-  "Суббота"
-];
-
-const dayName = days[now.getDay()];
-
-// Время суток
-const hours = now.getHours();
-let timeOfDay;
-
-if (hours >= 0 && hours < 6) {
-  timeOfDay = "Ночь";
-} else if (hours < 12) {
-  timeOfDay = "Утро";
-} else if (hours < 18) {
-  timeOfDay = "День";
-} else {
-  timeOfDay = "Вечер";
-}
-
-console.log(`Сегодня ${dayName}, сейчас ${timeOfDay}`);
-
-
-*/

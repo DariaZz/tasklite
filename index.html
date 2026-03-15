@@ -19,10 +19,10 @@
     </header>
     <main class="container">
         <h1 class="page-title">Задачи</h1>
-    <div class="form-add">
+    <form class="form-add">
         <input class="form-add__input" type="text" placeholder="Введите задачу" />
-        <button class="form-add__button" type="button">Добавить</button>
-    </div>
+        <button class="form-add__button" type="submit">Добавить</button>
+    </form>
 
     <div class="toolbar">
   <input class="toolbar__search" type="text" placeholder="Поиск задач…" />
@@ -32,8 +32,11 @@
     <button class="tabs__item" type="button">Завершённые</button>
   </div>
   <select class="toolbar__sort">
-    <option selected>Сначала старые</option>
-    <option>Сначала новые</option>
+    <option >Сначала старые</option>
+    <option selected>Сначала новые</option>
+    <option>Название A→Z</option>
+  <option>Название Z→A</option>
+
   </select>
     </div>
     <div class="tasks"></div>
@@ -62,7 +65,7 @@
   </button>
 </div>
     </main>
-    <script src="task.js"></script>
+    
     <script src="scripe.js"></script>
   </body>
 </html>

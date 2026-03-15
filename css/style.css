@@ -272,3 +272,10 @@ html, body {
   background: #f1f1f3;
   cursor: not-allowed;
 }
+
+/*урок 29 02.03.26 */
+.input--error {
+  border-color: #cb6e6e;
+  box-shadow: 0 0 4px rgba(203, 110, 110, 0.3);
+}
+

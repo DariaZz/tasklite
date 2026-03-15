@@ -365,7 +365,7 @@ console.log(toggleTaskStatus(tasks5, 1));
 
 /*Урок 23 Циклы*/
 
-et tasks = [
+let tasks = [
   { id: 1, title: "Купить молоко", status: "активна" },
   { id: 2, title: "Сходить в спортзал", status: "выполнена" },
   { id: 3, title: "Позвонить другу", status: "активна" },
