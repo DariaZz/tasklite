@@ -6,41 +6,45 @@ const searchInput = document.querySelector('.toolbar__search');
 const footer = document.querySelector('.footer-controls');
 const sortSelect = document.querySelector('.toolbar__sort');
 
-const tasks = [
-  { text: 'Купить продукты', done: false, date: 'Сегодня, 12:00' },
-  { text: 'Сделать домашку', done: true, date: 'Сегодня, 18:00' },
-  { text: 'Позвонить другу', done: false, date: 'Сегодня, 20:00' },
-  { text: 'Почитать книгу', done: false, date: 'Завтра, 10:00' },
-  { text: 'Сходить на тренировку', done: true, date: 'Завтра, 17:00' },
-  { text: 'Подготовиться к контрольной', done: false, date: 'Сегодня, 21:00' },
-  { text: 'Убраться в комнате', done: false, date: 'Сегодня, 19:00' }
-];
-
-function renderAll() {
-  document.querySelectorAll('.task').forEach(t => t.remove());
-  tasks.forEach(task => {
-  const card = renderTasks(task);
-  footer.before(card);
+const tasks = [];
+const form = document.querySelector('.form-add');
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  addTask();
 });
+
+function addTask() {
+  const text = input.value.trim();
+  if (text === '' || text.length < 3) {
+    input.classList.add('input--error');
+    return;
+  }
+  input.classList.remove('input--error');    // Удаляем ошибку, если текст корректный
+  const newTask = {
+    id: tasks.length + 1,
+    text: text,
+    done: false,
+    date: formatDate(new Date())
+  };
+  tasks.push(newTask);
+  input.value = ''; // очистка поля
+  renderAll(); // обновление интерфейса
 }
-renderAll();
+
 
 
 function renderTasks(task) {
-  container.innerHTML = '';
-
-  tasks.forEach((task) => {
     const item = document.createElement('div');
     item.classList.add('task');
 
-    if (task.done) item.classList.add('task--done');
+  if (task.done) item.classList.add('task--done');
     const content = document.createElement('div');
     content.classList.add('task__content');
 
     const title = document.createElement('div');
     title.classList.add('task__title');
     title.textContent = task.text;
-
+    
     const meta = document.createElement('div');
     meta.classList.add('task__meta');
     meta.textContent = task.date;
@@ -100,7 +104,7 @@ function renderTasks(task) {
     deleteBtn.addEventListener('click', () => {
       const index = tasks.indexOf(task);
       tasks.splice(index, 1);
-      renderAll();
+      renderAll(8);
     });
 
     // Отметка выполнения
@@ -111,9 +115,77 @@ function renderTasks(task) {
     });
     actions.append(editBtn, deleteBtn);
     item.append(actions);
-    container.append(item);
-    
+
     return item;
+}
+
+function renderAll() {
+  document.querySelectorAll('.task').forEach(t => t.remove());
+  tasks.forEach(task => {
+    const card = renderTasks(task);
+    container.append(card);
   });
 }
 renderAll();
+
+
+const now = new Date();
+console.log(now);
+
+const day = now.getDate();
+const month = now.getMonth() + 1;
+const year = now.getFullYear();
+console.log(`${day}.${month}.${year}`);
+
+const hours = now.getHours();
+const minutes = now.getMinutes();
+const seconds = now.getSeconds();
+console.log(`${hours}:${minutes}:${seconds}`);
+
+console.log(now.toLocaleString());
+
+function formatDate(date) {
+  const d = date.getDate().toString().padStart(2, '0');
+  const m = (date.getMonth() + 1).toString().padStart(2, '0');
+  const y = date.getFullYear();
+  const h = date.getHours().toString().padStart(2, '0');
+  const min = date.getMinutes().toString().padStart(2, '0');
+  return `${d}.${m}.${y}, ${h}:${min}`;
+}
+
+
+/*
+
+const now = new Date();
+
+// День недели (0 — воскресенье, 6 — суббота)
+const days = [
+  "Воскресенье",
+  "Понедельник",
+  "Вторник",
+  "Среда",
+  "Четверг",
+  "Пятница",
+  "Суббота"
+];
+
+const dayName = days[now.getDay()];
+
+// Время суток
+const hours = now.getHours();
+let timeOfDay;
+
+if (hours >= 0 && hours < 6) {
+  timeOfDay = "Ночь";
+} else if (hours < 12) {
+  timeOfDay = "Утро";
+} else if (hours < 18) {
+  timeOfDay = "День";
+} else {
+  timeOfDay = "Вечер";
+}
+
+console.log(`Сегодня ${dayName}, сейчас ${timeOfDay}`);
+
+
+*/
